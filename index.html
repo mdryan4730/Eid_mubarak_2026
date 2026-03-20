@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eid Mubarak — From Mohammed Ryan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --emerald-deep:   #031c0e;
+      --emerald-mid:    #0b3d20;
+      --emerald-bright: #0f5c2e;
+      --gold-deep:      #8a6500;
+      --gold-mid:       #c9960c;
+      --gold-bright:    #f0c040;
+      --gold-shimmer:   #ffe58a;
+      --cream:          #fdf6e3;
+      --white-soft:     rgba(255,255,255,0.92);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; height: 100%; overflow: hidden;
+      background: var(--emerald-deep);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--cream);
+    }
+
+    /* ── BACKGROUND LAYERS ── */
+    .bg-radial {
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%,   #1a5c3a 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 100% 100%, #0e3d20 0%, transparent 55%),
+        radial-gradient(ellipse 50% 60% at 0% 80%,   #0a2e18 0%, transparent 50%),
+        var(--emerald-deep);
+    }
+
+    /* Islamic geometric tile pattern */
+    .bg-pattern {
+      position: fixed; inset: 0; z-index: 1;
+      opacity: 0.07;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23f0c040' stroke-width='0.8'%3E%3Cpolygon points='40,2 52,14 66,14 72,27 66,40 72,53 66,66 52,66 40,78 28,66 14,66 8,53 14,40 8,27 14,14 28,14'/%3E%3Cpolygon points='40,12 50,20 62,20 66,31 62,40 66,51 62,60 50,60 40,68 30,60 18,60 14,51 18,40 14,31 18,20 30,20'/%3E%3Cline x1='40' y1='2' x2='40' y2='12'/%3E%3Cline x1='66' y1='14' x2='62' y2='20'/%3E%3Cline x1='72' y1='40' x2='62' y2='40'/%3E%3Cline x1='66' y1='66' x2='62' y2='60'/%3E%3Cline x1='40' y1='78' x2='40' y2='68'/%3E%3Cline x1='14' y1='66' x2='18' y2='60'/%3E%3Cline x1='8' y1='40' x2='18' y2='40'/%3E%3Cline x1='14' y1='14' x2='18' y2='20'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* ── PARTICLE STARS ── */
+    #stars-canvas {
+      position: fixed; inset: 0; z-index: 2; pointer-events: none;
+    }
+
+    /* ── GOLDEN BORDER FRAME ── */
+    .frame-corner {
+      position: fixed; z-index: 3; width: 90px; height: 90px;
+    }
+    .frame-corner svg { width: 100%; height: 100%; }
+    .frame-corner.tl { top: 16px; left: 16px; }
+    .frame-corner.tr { top: 16px; right: 16px; transform: scaleX(-1); }
+    .frame-corner.bl { bottom: 16px; left: 16px; transform: scaleY(-1); }
+    .frame-corner.br { bottom: 16px; right: 16px; transform: scale(-1); }
+
+    /* ── LANTERNS ── */
+    .lantern {
+      position: fixed; z-index: 3;
+      animation: sway 4s ease-in-out infinite;
+      transform-origin: top center;
+    }
+    .lantern.left  { top: -10px; left: 6%; animation-delay: 0s; }
+    .lantern.right { top: -10px; right: 6%; animation-delay: 0.8s; }
+    @keyframes sway {
+      0%,100% { transform: rotate(-5deg); }
+      50%      { transform: rotate(5deg); }
+    }
+
+    /* ── MAIN WRAPPER ── */
+    .page {
+      position: relative; z-index: 10;
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+
+    /* ── CRESCENT + STARS ── */
+    .moon-wrap {
+      margin-bottom: 12px;
+      animation: floatMoon 5s ease-in-out infinite;
+    }
+    @keyframes floatMoon {
+      0%,100% { transform: translateY(0px); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: linear-gradient(145deg, rgba(11,61,32,0.85), rgba(3,28,14,0.92));
+      border: 1px solid rgba(240,192,64,0.35);
+      border-radius: 20px;
+      padding: 48px 52px 44px;
+      max-width: 520px; width: 100%;
+      text-align: center;
+      box-shadow:
+        0 0 60px rgba(12,120,50,0.25),
+        0 0 0 1px rgba(240,192,64,0.12) inset,
+        0 30px 80px rgba(0,0,0,0.5);
+      backdrop-filter: blur(12px);
+      animation: cardIn 1.2s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(40px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .eid-arabic {
+      font-family: 'Amiri', serif;
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      color: var(--gold-bright);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-shadow: 0 0 30px rgba(240,192,64,0.5), 0 2px 4px rgba(0,0,0,0.4);
+      animation: glowPulse 3s ease-in-out infinite;
+      margin-bottom: 4px;
+    }
+    @keyframes glowPulse {
+      0%,100% { text-shadow: 0 0 20px rgba(240,192,64,0.4), 0 2px 4px rgba(0,0,0,0.4); }
+      50%      { text-shadow: 0 0 40px rgba(240,192,64,0.8), 0 2px 4px rgba(0,0,0,0.4); }
+    }
+
+    .divider {
+      display: flex; align-items: center; gap: 12px;
+      margin: 16px auto; width: 80%;
+    }
+    .divider-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(240,192,64,0.6), transparent);
+    }
+    .divider-star { color: var(--gold-bright); font-size: 0.9rem; }
+
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      font-style: italic;
+      color: rgba(253,246,227,0.65);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .prompt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: rgba(253,246,227,0.85);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* ── INPUT ── */
+    .input-wrap {
+      position: relative; margin-bottom: 22px;
+    }
+    .input-wrap::before {
+      content: '✦';
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--gold-mid); font-size: 0.85rem;
+      pointer-events: none; z-index: 1;
+    }
+    #nameInput {
+      width: 100%;
+      padding: 15px 20px 15px 40px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--cream);
+      background: rgba(15,92,46,0.3);
+      border: 1.5px solid rgba(240,192,64,0.45);
+      border-radius: 50px;
+      outline: none;
+      transition: all 0.3s ease;
+      letter-spacing: 0.04em;
+    }
+    #nameInput::placeholder { color: rgba(253,246,227,0.35); }
+    #nameInput:focus {
+      border-color: var(--gold-bright);
+      background: rgba(15,92,46,0.45);
+      box-shadow: 0 0 0 4px rgba(240,192,64,0.12), 0 0 20px rgba(240,192,64,0.2);
+    }
+
+    /* ── BUTTON ── */
+    .btn-wish {
+      width: 100%;
+      padding: 15px 32px;
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: clamp(0.75rem, 2vw, 0.9rem);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--emerald-deep);
+      background: linear-gradient(135deg, #f0c040 0%, #e8a800 40%, #f5d060 70%, #c9960c 100%);
+      border: none; border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(201,150,12,0.45), 0 1px 0 rgba(255,255,255,0.3) inset;
+      transition: all 0.3s ease;
+      position: relative; overflow: hidden;
+    }
+    .btn-wish::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      transition: left 0.5s ease;
+    }
+    .btn-wish:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,150,12,0.6); }
+    .btn-wish:hover::after { left: 140%; }
+    .btn-wish:active { transform: translateY(0); }
+
+    .error-msg {
+      color: #ff9977; font-size: 0.85rem;
+      margin-top: 10px; display: none;
+      font-style: italic;
+    }
+
+    /* ── BOTTOM TEXT ── */
+    .bottom-note {
+      margin-top: 22px;
+      font-size: 0.78rem;
+      color: rgba(253,246,227,0.3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── SCROLL STARS ── */
+    .floating-star {
+      position: fixed; z-index: 4; pointer-events: none;
+      color: var(--gold-bright);
+      animation: floatStar linear infinite;
+      opacity: 0;
+    }
+    @keyframes floatStar {
+      0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.5; }
+      100% { opacity: 0; transform: translateY(-100vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-radial"></div>
+  <div class="bg-pattern"></div>
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- Corner ornaments -->
+  <div class="frame-corner tl">
+    <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L40 2 M2 2 L2 40" stroke="#f0c040" stroke-width="2" stroke-linecap="round"/>
+      <path d="M8 2 L8 8 L2 8" stroke="#f0c040" stroke-width="1" fill="none"/>
+      <circle cx="14" cy="14" r="3" fill="none" stroke="#c9960c" stroke-width="1"/>
+      <path d="M20 2 Q35 15 20 28 Q5 15 20 2Z" fill="rgba(240,192,64,0.15)" stroke="#f0c040" stroke-width="0.8"/>
+      <path d="M2 20 Q15 35 28 20 Q15 5 2 20Z" fill="rgba(240,192,64,0.15)" stroke="#f0c040" stroke-width="0.8"/>
+    </svg>
+  </div>
+  <div class="frame-corner tr">
+    <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L40 2 M2 2 L2 40" stroke="#f0c040" stroke-width="2" stroke-linecap="round"/>
+      <path d="M8 2 L8 8 L2 8" stroke="#f0c040" stroke-width="1" fill="none"/>
+      <circle cx="14" cy="14" r="3" fill="none" stroke="#c9960c" stroke-width="1"/>
+      <path d="M20 2 Q35 15 20 28 Q5 15 20 2Z" fill="rgba(240,192,64,0.15)" stroke="#f0c040" stroke-width="0.8"/>
+      <path d="M2 20 Q15 35 28 20 Q15 5 2 20Z" fill="rgba(240,192,64,0.15)" stroke="#f0c040" stroke-width="0.8"/>
+    </svg>
+  </div>
+  <div class="frame-corner bl">
+    <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L40 2 M2 2 L2 40" stroke="#f0c040" stroke-width="2" stroke-linecap="round"/>
+      <path d="M8 2 L8 8 L2 8" stroke="#f0c040" stroke-width="1" fill="none"/>
+      <circle cx="14" cy="14" r="3" fill="none" stroke="#c9960c" stroke-width="1"/>
+      <path d="M20 2 Q35 15 20 28 Q5 15 20 2Z" fill="rgba(240,192,64,0.15)" stroke="#f0c040" stroke-width="0.8"/>
+      <path d="M2 20 Q15 35 28 20 Q15 5 2 20Z" fill="rgba(240,192,64,0.15)" stroke="#f0c040" stroke-width="0.8"/>
+    </svg>
+  </div>
+  <div class="frame-corner br">
+    <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L40 2 M2 2 L2 40" stroke="#f0c040" stroke-width="2" stroke-linecap="round"/>
+      <path d="M8 2 L8 8 L2 8" stroke="#f0c040" stroke-width="1" fill="none"/>
+      <circle cx="14" cy="14" r="3" fill="none" stroke="#c9960c" stroke-width="1"/>
+      <path d="M20 2 Q35 15 20 28 Q5 15 20 2Z" fill="rgba(240,192,64,0.15)" stroke="#f0c040" stroke-width="0.8"/>
+      <path d="M2 20 Q15 35 28 20 Q15 5 2 20Z" fill="rgba(240,192,64,0.15)" stroke="#f0c040" stroke-width="0.8"/>
+    </svg>
+  </div>
+
+  <!-- Left Lantern -->
+  <div class="lantern left">
+    <svg width="48" height="110" viewBox="0 0 48 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="24" y1="0" x2="24" y2="12" stroke="#c9960c" stroke-width="2"/>
+      <rect x="10" y="12" width="28" height="4" rx="2" fill="#b8860b"/>
+      <path d="M8 16 Q4 45 6 75 L42 75 Q44 45 40 16Z" fill="url(#lantern-grad-l)" opacity="0.9"/>
+      <path d="M8 16 Q4 45 6 75 L42 75 Q44 45 40 16Z" fill="none" stroke="#f0c040" stroke-width="1.2"/>
+      <line x1="24" y1="16" x2="24" y2="75" stroke="rgba(240,192,64,0.3)" stroke-width="0.8"/>
+      <line x1="12" y1="35" x2="36" y2="35" stroke="rgba(240,192,64,0.3)" stroke-width="0.8"/>
+      <line x1="10" y1="55" x2="38" y2="55" stroke="rgba(240,192,64,0.3)" stroke-width="0.8"/>
+      <rect x="10" y="75" width="28" height="4" rx="2" fill="#b8860b"/>
+      <path d="M16 79 L14 90 L34 90 L32 79Z" fill="#8a6500" stroke="#c9960c" stroke-width="0.8"/>
+      <ellipse cx="24" cy="45" rx="10" ry="16" fill="rgba(255,200,50,0.18)"/>
+      <defs>
+        <linearGradient id="lantern-grad-l" x1="8" y1="16" x2="40" y2="75" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#c9960c" stop-opacity="0.95"/>
+          <stop offset="50%" stop-color="#f0c040" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#8a6500" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Right Lantern -->
+  <div class="lantern right">
+    <svg width="48" height="110" viewBox="0 0 48 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="24" y1="0" x2="24" y2="12" stroke="#c9960c" stroke-width="2"/>
+      <rect x="10" y="12" width="28" height="4" rx="2" fill="#b8860b"/>
+      <path d="M8 16 Q4 45 6 75 L42 75 Q44 45 40 16Z" fill="url(#lantern-grad-r)" opacity="0.9"/>
+      <path d="M8 16 Q4 45 6 75 L42 75 Q44 45 40 16Z" fill="none" stroke="#f0c040" stroke-width="1.2"/>
+      <line x1="24" y1="16" x2="24" y2="75" stroke="rgba(240,192,64,0.3)" stroke-width="0.8"/>
+      <line x1="12" y1="35" x2="36" y2="35" stroke="rgba(240,192,64,0.3)" stroke-width="0.8"/>
+      <line x1="10" y1="55" x2="38" y2="55" stroke="rgba(240,192,64,0.3)" stroke-width="0.8"/>
+      <rect x="10" y="75" width="28" height="4" rx="2" fill="#b8860b"/>
+      <path d="M16 79 L14 90 L34 90 L32 79Z" fill="#8a6500" stroke="#c9960c" stroke-width="0.8"/>
+      <ellipse cx="24" cy="45" rx="10" ry="16" fill="rgba(255,200,50,0.18)"/>
+      <defs>
+        <linearGradient id="lantern-grad-r" x1="8" y1="16" x2="40" y2="75" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#c9960c" stop-opacity="0.95"/>
+          <stop offset="50%" stop-color="#f0c040" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#8a6500" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- MAIN PAGE -->
+  <div class="page">
+
+    <!-- Moon + Stars SVG -->
+    <div class="moon-wrap">
+      <svg width="120" height="70" viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Moon -->
+        <path d="M60 8 A28 28 0 1 1 42 60 A20 20 0 1 0 60 8Z" fill="url(#moon-grad)"/>
+        <path d="M60 8 A28 28 0 1 1 42 60 A20 20 0 1 0 60 8Z" fill="none" stroke="rgba(240,192,64,0.5)" stroke-width="0.8"/>
+        <!-- Stars -->
+        <g fill="#f0c040">
+          <polygon points="8,20 9.5,25 15,25 10.5,28 12,33 8,30 4,33 5.5,28 1,25 6.5,25" opacity="0.9"/>
+          <polygon points="105,15 106.2,19 111,19 107.4,21.5 108.6,25.5 105,23 101.4,25.5 102.6,21.5 99,19 103.8,19" opacity="0.85"/>
+          <polygon points="20,55 21,58 24,58 21.5,60 22.5,63 20,61.5 17.5,63 18.5,60 16,58 19,58" opacity="0.7"/>
+          <polygon points="100,50 101,53 104,53 101.5,55 102.5,58 100,56.5 97.5,58 98.5,55 96,53 99,53" opacity="0.75"/>
+          <circle cx="30" cy="10" r="1.5" opacity="0.6"/>
+          <circle cx="88" cy="8"  r="1.2" opacity="0.5"/>
+          <circle cx="112" cy="38" r="1" opacity="0.55"/>
+          <circle cx="5"  cy="48" r="1.3" opacity="0.5"/>
+        </g>
+        <defs>
+          <linearGradient id="moon-grad" x1="32" y1="8" x2="88" y2="65" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ffe58a"/>
+            <stop offset="50%" stop-color="#f0c040"/>
+            <stop offset="100%" stop-color="#c9960c"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- CARD -->
+    <div class="card">
+      <div class="eid-arabic">عيد مبارك</div>
+      <div class="eid-arabic" style="font-size:clamp(1.6rem,4vw,2.1rem); margin-top:4px;">Eid Mubarak</div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-star">✦ ☽ ✦</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <p class="tagline">A Personal Wish Awaits You</p>
+
+      <p class="prompt">
+        Please enter your name so<br>
+        <span style="color:var(--gold-bright); font-style:italic;">Mohammed Ryan</span> can wish you personally
+      </p>
+
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="nameInput"
+          placeholder="Enter your name…"
+          maxlength="40"
+          autocomplete="off"
+        />
+      </div>
+
+      <button class="btn-wish" onclick="goToWishes()">
+        Receive Your Eid Wish ✦
+      </button>
+
+      <p class="error-msg" id="errorMsg">Please enter your name to continue 🌙</p>
+
+      <p class="bottom-note">From the family of Mohammed Ryan · 2025</p>
+    </div>
+
+  </div>
+
+  <script>
+    /* ── STARS CANVAS ── */
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resize() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < 120; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.6 + 0.3,
+          a: Math.random(),
+          da: (Math.random() * 0.008 + 0.002) * (Math.random() < 0.5 ? 1 : -1),
+          speed: Math.random() * 0.15 + 0.03
+        });
+      }
+    }
+    initStars();
+
+    function animStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        s.a += s.da;
+        if (s.a > 1 || s.a < 0) s.da *= -1;
+        s.y -= s.speed;
+        if (s.y < -5) s.y = canvas.height + 5;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(240,192,64,${s.a * 0.85})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(animStars);
+    }
+    animStars();
+
+    /* ── NAVIGATE ── */
+    function goToWishes() {
+      const name = document.getElementById('nameInput').value.trim();
+      if (!name) {
+        const err = document.getElementById('errorMsg');
+        err.style.display = 'block';
+        document.getElementById('nameInput').focus();
+        setTimeout(() => err.style.display = 'none', 3000);
+        return;
+      }
+      localStorage.setItem('eid_recipient', name);
+      window.location.href = 'wishes.html';
+    }
+
+    document.getElementById('nameInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') goToWishes();
+    });
+  </script>
+</body>
+</html>
